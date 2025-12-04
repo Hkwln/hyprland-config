@@ -1,0 +1,7 @@
+#ignore everything exept the few hyprland configs:
+*
+!*/
+!.gitignore
+!README
+!hypr/
+!hypr/..
