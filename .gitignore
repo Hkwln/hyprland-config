@@ -1,7 +1,11 @@
-#ignore everything exept the few hyprland configs:
-*
-!*/
-!.gitignore
-!README
-!hypr/
-!hypr/..
+# Ignore everything in the root directory
+/*
+
+# Unignore the config directories we want to track
+!/hypr/
+!/rofi/
+!/waybar/
+
+# Unignore git configuration files
+!/.gitignore
+!/README
