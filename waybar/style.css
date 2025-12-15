@@ -11,6 +11,9 @@ window#waybar {
   /* you can also GTK3 CSS functions! */
   background-color: shade(@base, 0.9);
   border: 2px solid alpha(@crust, 0.3);
+  border-radius: 12px;
+  margin: 5px;
+  padding: 0px 5px;
 }
 
 window#waybar.termite {
@@ -81,14 +84,52 @@ button:hover {
 #idle_inhibitor,
 #scratchpad,
 #power-profiles-daemon,
+#custom-bluetooth,
+#custom-power,
 #mpd {
     padding: 0 10px;
     color: #ffffff;
+    border-radius: 8px;
+    margin: 2px;
 }
 
-#window,
+#window {
+    margin: 0 4px;
+    padding: 0 10px;
+    color: @text;
+}
+
+/* Workspace styling - browser-tab-like appearance */
 #workspaces {
     margin: 0 4px;
+}
+
+#workspaces button {
+    padding: 0 10px;
+    background-color: rgba(255, 255, 255, 0.1);
+    color: rgba(255, 255, 255, 0.5);
+    border-radius: 8px;
+    margin: 2px;
+    transition: all 0.3s ease;
+}
+
+#workspaces button:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+    color: rgba(255, 255, 255, 0.8);
+    box-shadow: none;
+}
+
+#workspaces button.active {
+    background-color: @blue;
+    color: @base;
+    font-weight: bold;
+    box-shadow: inset 0 -3px @sapphire;
+}
+
+#workspaces button.urgent {
+    background-color: @red;
+    color: @base;
+    animation: blink 1s ease-in-out infinite;
 }
 
 /* If workspaces is the leftmost module, omit left margin */
@@ -319,5 +360,21 @@ label:focus {
     color: #ffffff;
     padding: 0 10px;
     border-radius: 5px;
+}
+
+/* Bluetooth module styling */
+#custom-bluetooth.on {
+    background-color: #2980b9;
+}
+
+#custom-bluetooth.off {
+    background-color: #90b1b1;
+    color: #555555;
+}
+
+/* Power button styling */
+#custom-power {
+    background-color: #f53c3c;
+    color: #ffffff;
 }
 
