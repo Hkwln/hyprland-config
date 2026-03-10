@@ -1,0 +1,39 @@
+{
+// Header //
+
+    "layer": "top",
+    "position": "top",
+    "mod": "dock",
+    "height": 30,
+    "margin-top": 4,
+    "margin-bottom": 4,
+ // "margin-left": 10,
+ // "margin-right": 10,
+    "exclusive": true,
+    "passthrough": false,
+    "gtk-layer-shell": true,
+
+
+    // Load Modules
+    "include": ["~/.config/waybar/modules.json"],
+
+// Positions //
+
+	"modules-left": [
+        "custom/appmenu",
+        "group/quicklinks",
+        "hyprland/workspaces",
+        "wlr/taskbar"
+    ],
+
+	"modules-center": [
+        "clock"
+    ],
+
+    "modules-right": [
+        "group/misc",
+        "group/devices",
+        "group/system",
+        "tray"
+    ],
+}
