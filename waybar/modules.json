@@ -26,19 +26,19 @@
          ]
     },
 
-    // Group Misc
+// Group Misc - Drawer that expands on hover (rightmost position)
 "group/misc": {
-    "orientation": "inherit",
+    "orientation": "horizontal",
     "drawer": {
-        "transition-duration": 500,
-        "children-class": "not-misc",
-        "transition-right-to-left": false,
+        "transition-duration": 300,
+        "children-class": "drawer-child",
+        "transition-left-to-right": false
     },
     "modules": [
         "custom/misc",
-        "custom/screenrecorder",
-        "idle_inhibitor",
-        "custom/timer"
+        "cpu",
+        "pulseaudio#microphone",
+        "custom/power"
     ]
 },
 
@@ -57,9 +57,6 @@
     "group/system": {
         "orientation": "horizontal",
         "modules": [
-            "custom/updates",
-            "custom/mako",
-            "custom/copyq",
             "custom/power"
          ]
     },
@@ -222,14 +219,14 @@
         "format-linked": "󱘖 {ifname} (No IP)",
         "format-disconnected": " Disconnected",
         "format-alt": "󰤨 {essid}",
-        "on-click": "alacritty --class nmtui -e nmtui",
+        "on-click": "kitty --class nmtui -e nmtui",
         "interval": 5
     },
 
     "custom/power": {
         "format": "{}",
         "exec": "echo ; echo  logout",
-        "on-click": "~/.config/hypr/scripts/logoutlaunch.sh 2",
+        "on-click": "kitty -e ~/tools/scripts/waybar-power-menu.sh",
         "interval" : 86400, // once every day
         "tooltip": true
     },
@@ -281,23 +278,15 @@
 
 	"wlr/taskbar": {
 		"format": "{icon}",
-		"icon-size": {},
-		"icon-theme": "${i_theme}",
-        "spacing": 0,
+		"icon-size": 20,
+		"icon-theme": "Papirus",
+        "spacing": 8,
 		"tooltip-format": "{title}",
 		"on-click": "activate",
 		"on-click-middle": "close",
-		"on-click-right": "fullscreen",
-		"ignore-list": [
-            "com.github.hluk.copyq",
-			"alacritty-dropterm",
-            "feathernotes",
-            "ranger",
-            "org.keepassxc.KeePassXC"
-		],
-		"app_ids-mapping": {
-			"firefoxdeveloperedition": "firefox-developer-edition"
-		}
+		"on-click-right": "minimize",
+		"ignore-list": [],
+		"all-outputs": true
 	},
 
     "tray": {
@@ -367,9 +356,45 @@
         "active-only": false,
         "on-click": "activate",
         "persistent-workspaces": {
-            // START WORKSPACES
-    "*": 5
-            // END WORKSPACES
+            "eDP-1": [1, 2, 3, 4, 5],
+            "DP-1": [6, 7, 8, 9, 10]
         }
+    },
+
+    "hyprland/submap": {
+        "format": "●",
+        "tooltip": false
+    },
+
+    "pulseaudio#microphone": {
+        "format": "{format_source}",
+        "format-source": " {volume}%",
+        "format-source-muted": "",
+        "on-click": "wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle",
+        "on-scroll-up": "wpctl set-volume @DEFAULT_AUDIO_SOURCE@ 5%+",
+        "on-scroll-down": "wpctl set-volume @DEFAULT_AUDIO_SOURCE@ 5%-",
+        "tooltip-format": "Microphone: {volume}%"
+    },
+
+    "temperature": {
+        "thermal-zone": 0,
+        "critical-threshold": 80,
+        "format": "{temperatureC}°C {icon}",
+        "format-icons": ["", "", ""],
+        "interval": 10
+    },
+
+    "battery": {
+        "states": {
+            "warning": 30,
+            "critical": 15
+        },
+        "format": "{icon} {capacity}%",
+        "format-full": "{icon} {capacity}%",
+        "format-charging": " {capacity}%",
+        "format-plugged": " {capacity}%",
+        "format-alt": "{icon} {time}",
+        "format-icons": ["", "", "", "", ""],
+        "tooltip-format": "{timeTo}, {capacity}%"
     }
 }
