@@ -3,12 +3,12 @@
 -- TODO: 
 --]]
 ---@diagnostic disable-next-line: undefined-global
-local hl = lh
+local hl = hl
 -----------------------MONITORS--------------------
 hl.monitor({
 	output = "eDP-1",
 	mode = "1366x768@60",
-	position = 0x0,
+	--position = 0x0,
 	scale = 1,
 })
 -- currently the secound monitor is on the left
@@ -87,7 +87,7 @@ hl.config({
 			vibrancy = 0.1696,
 		},
 	},
-	opengj = {
+	opengl = {
 		nvidia_anti_flicker = false,
 	},
 	render = {
@@ -183,7 +183,7 @@ hl.device({
 local mainMod = "SUPER"
 
 hl.bind("SUPER + B", hl.dsp.exec_cmd(browser))
-hl.bind("SUPER + T", hl.dsp.exec_cmd(terminal)({ description = "my favourite terminal" }))
+hl.bind("SUPER + T", hl.dsp.exec_cmd(terminal))
 hl.bind("SUPER + SPACE", hl.dsp.exec_cmd(menu))
 hl.bind("SUPER +  Udiaeresis", hl.dsp.exec_cmd(lock))
 --maniputating windows:
