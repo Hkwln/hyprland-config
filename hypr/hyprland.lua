@@ -1,6 +1,6 @@
---[[ 
+--[ [
 --MY NEW LUA HYPRLAND CONFIG
--- TODO: 
+-- TODO:
 --]]
 ---@diagnostic disable-next-line: undefined-global
 local hl = hl
@@ -30,16 +30,20 @@ local idle = "hypridle"
 local nightmode = "hyprsunset"
 
 ---------------------EnvironmenVariablen------------
-hl.env("XCURSOR_SIZE", "24")
-hl.env("HYPRCURSOR_SIZE", "24")
+hl.env("XCURSOR_THEME", "Bibata-Modern-Ice")
+hl.env("XCURSOR_SIZE", "12")
+hl.env("HYPRCURSOR_THEME", "Bibata-Modern-Ice")
+hl.env("HYPRCURSOR_SIZE", "12")
 
 ---------------------Autostart----------------------
 hl.on("hyprland.start", function()
 	hl.exec_cmd(terminal)
-	hl.exec_cmd("waybar && nm-applet")
+	hl.exec_cmd("waybar")
+	hl.exec_cmd("nm-applet")
 	hl.exec_cmd(idle)
+	hl.exec_cmd(lock)
+	hl.exec_cmd("hyprlpaper")
 	hl.exec_cmd(nightmode)
-	hl.exec_cmd("hyprlauncher -d")
 end)
 ---------------------Permissions--------------------
 hl.config({})
@@ -261,7 +265,8 @@ hl.window_rule({
 	move = "20 monitor_h-120",
 	float = true,
 })
-
+--[[
+-- TEST: if without this rule browser pop up works
 -- Browser popup float (custom rule)
 hl.window_rule({
 	name = "browser-popup-float",
@@ -269,3 +274,4 @@ hl.window_rule({
 	float = true,
 	center = true,
 })
+--]]
